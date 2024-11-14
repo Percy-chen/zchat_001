@@ -1,0 +1,98 @@
+<mvc:View controllerName="zchat001.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.f"
+            class="viewPadding">
+    <!-- <Page id="page" title="{i18n>title}">
+<l:VerticalLayout id="VerticalLayout01"
+		class="sapUiContentPadding"
+		width="100%">
+		<l:content>
+			<MessageStrip id="MessageStrip01"
+			showIcon="true"
+			text="Input:"/>
+			<TextArea id="TextArea01" placeholder="Enter Text" growing="true" growingMaxLines="7" width="100%"/>
+        <f:SimpleForm id="SimpleForm01"
+				editable="true"
+				layout="ResponsiveGridLayout" >
+                			<f:toolbar>
+				<Toolbar id="TB1">
+					<ToolbarSpacer id="ToolbarSpacer01"/>
+         <Button id="Button01" type="Emphasized" text="Go" press="getText" width="10%"/>
+				</Toolbar>
+			</f:toolbar>
+            	</f:SimpleForm>
+
+			<MessageStrip id="MessageStrip02"
+			showIcon="true"
+			text="Output:"
+			class="sapUiMediumMarginTop"/>
+			<TextArea id="TextArea02" value="" growing="true" growingMaxLines="10" width="100%"/>
+
+		</l:content>
+	</l:VerticalLayout>
+    </Page> -->
+
+	<Page id="page">
+	  <content>
+
+	    <f:SidePanel id="id_sp" sidePanelResizable="true" 
+                                          toggle="onToggle" 
+                                          sidePanelPosition="Right" 
+                                          sidePanelWidth="30rem">
+	      <f:mainContent>
+			<MessageStrip id="MessageStrip01"
+			showIcon="true"
+			text="AI文本输出:"
+			class="sapUiMediumMarginTop"
+      visible="false"/>
+			<TextArea id="TextArea01" value="" growing="true" growingMaxLines="10" width="100%"
+                visible="false"/>
+	      </f:mainContent>
+	      <f:items>
+
+	        <f:SidePanelItem icon="sap-icon://wounds-doc"          
+                                  text="AI 助手" class="spi">
+		  <f:content>
+		    <VBox width="100%">
+		      <IllustratedMessage id="id_illuMsg" 
+                                          title="AI 助手" 
+                                          description="AI智能问答"
+                                          class="sapUiLargeMarginTop"
+                                          illustrationType="sapIllus-SimpleTask"
+                                          illustrationSize="Scene">
+                        <additionalContent>
+                          <Button text="开始" press="onPressHide"/>
+                        </additionalContent>
+                      </IllustratedMessage>
+
+                      <ScrollContainer id="id_SC" visible="false" 
+                                       width="100%"
+                                       height="500px" 
+                                       vertical="true">
+                        <List id="id_List" items="{path:'chatbot>/list'}"
+                                          noDataText="无聊天记录..">    
+                          <items>
+                            <FeedListItem text="{chatbot>text}" 
+                                  icon="{= ${chatbot>type} === 'query' ?                                        
+                                  'sap-icon://customer' : 'sap-icon://da-2' }"
+                                  iconPress="onPress">
+                            </FeedListItem>                        
+                          </items>
+                        </List>
+                      </ScrollContainer>
+                      <VBox id="id_box" visible="false" width="100%">
+                        <Input width="100%" 
+                               placeholder="请输入问题.."
+                               submit="onSubmitQuery"/>
+                      </VBox>
+                    </VBox>
+                  </f:content>
+                </f:SidePanelItem>
+              </f:items>
+            </f:SidePanel>
+          </content>
+        </Page>
+</mvc:View>
